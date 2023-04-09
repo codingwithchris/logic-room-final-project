@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "$bootstrap/*": ["./__bootstrap__/*"],
+      "$container": ["./ioc/container"],
+      "$css/*": ["./__css__/*"],
+      "$features/*": ["./features/*"],
+      "$infra/*": ["./infra/*"]
+    }
+  },
+  "include": ["src"]
+}
