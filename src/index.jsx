@@ -1,9 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import 'reflect-metadata';
+import './styles.css';
+import * as React from 'react';
+import { render } from 'react-dom';
+import { InjectionProvider } from './Core/Providers/Injection';
+import { ValidationProvider } from './Core/Providers/Validation';
+import { AppComponent } from './AppComponent';
+import { container } from './AppIOC';
 import { configure } from 'mobx';
-
-import './index.css';
-import App from './App';
 
 configure({
   enforceActions: 'never',
@@ -13,11 +16,14 @@ configure({
   disableErrorBoundaries: false,
 });
 
-// create container here
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const rootElement = document.getElementById('root');
+render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <InjectionProvider container={container}>
+      <ValidationProvider>
+        <AppComponent />
+      </ValidationProvider>
+    </InjectionProvider>
+  </React.StrictMode>,
+  rootElement
 );
